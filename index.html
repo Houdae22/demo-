@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"></head>
+<body>
+<script src="index.js" type="module"></script>
+
+<script type="text/javascript">
+    //expression Ternaire
+    let estmembre = false;
+    let remise=(estmembre == true)? 20 : 10;
+    console.log("remise :"+ remise);
+    
+    const p1={
+                id :1,
+                nom : 'alaoui',
+                prenom :'kamal',
+                adresse :{rue : 'rue1', ville :'marrakech'}
+    }
+    /*const id = p1.id;
+    const nom = p1.nom;
+    const rue = p1.adresse.rue;
+    const ville =p1.adresse.ville;
+    console.log(id + " "+nom+" "+prenom+" "+rue+" "+ville);*/
+    //####### destructuration d'objet
+   /* const{id,nom,prenom,adresse:{rue},adresse:{ville}} =p1
+    console.log(id+" "+nom+" "+prenom+" "+rue+" "+ville);*/
+    //####### destructuration avec fonction
+    function presentation({id , nom})
+    {
+        console.log("id :"+id +"nom :"+nom);
+    }
+    presentation(p1);
+
+    //methode Map
+    let tab=[1,2,3,4]
+    const[a,b,...rest]=tab;
+    console.log(a+" "+b+" "+rest);
+
+    let tab1=[1,2,3];
+    let tab2=[4,5,6];
+    let tab3=[...tab1,...tab2]
+    console.log(tab3)
+    let tab4=[1,2,3,4,5];
+    //fonction flechée
+    //let tab5=tab4.map((element)=> element*3);
+
+    let tab5=tab4.map(function(element){return element*3;})
+    console.log("---"+tab5);
+   /* let tab6= [  {id:1,nom:'errahmani',prenom:'kamal'},
+                {id:1,nom:'errahmani',prenom:'kamal'},
+                {id:1,nom:'errahmani',prenom:'kamal'},
+                {id:1,nom:'errahmani',prenom:'kamal'},
+    ]
+    let tab7=tab6.map(function(personne) {return personne.prenom});
+    console.log(tab7)*/
+    ////////////////////////////////////////////////////////////////////////////////
+    // la fonction filter 
+    let personnes= [    {id:1,nom:'errahmani1',prenom:'kamal1',age:30},
+                        {id:2,nom:'errahmani2',prenom:'kamal2',age:45},
+                        {id:3,nom:'errahmani3',prenom:'kamal3',age:19},
+                        {id:4,nom:'errahmani4',prenom:'kamal4',age:24},
+    ]
+
+    let tabPair= tab4.filter(function(element){
+        return element % 2 ==0
+    })
+    let tabImPair= tab4.filter(function(element){
+        return element % 2 !=0
+    })
+    let tabPlus4= tab4.filter(function(element){
+        return element >= 4
+    })
+    console.log(tabPair);
+    console.log(tabImPair);
+    console.log(tabPlus4);
+   /* let persAgées=personnes.filter(function(pers){
+        return pers.age >= 30;
+
+    })*/
+    //### les noms des personnes agées
+    let persAgées=personnes.filter(function(pers){
+        return pers.age >= 30;}).map(function(element){
+            return element.nom;
+        });
+    // la fonction flechée
+    let persAgés=personnes.filter((pers)=>
+        pers.age >= 30).map((pers)=> pers.nom);
+        console.log(persAgés)
+
+    //exercice 1
+    let membre= [{id:1,nom:'Chakib',age:30,estmembre:true},
+                 {id:2,nom:'Mounir',age:45,estmembre:false},
+                ]
+   /* let persEstmembre=membre.filter(function(mbr){
+        return mbr.age >= 30;}).map(function(element){
+            return element.estmembre;
+        });
+        console.log(persEstmembre);*/
+
+    //exercice 2
+    let pers= [
+                 {id:1,nom:'errahmani1',prenom:'kamal1',age:30,estMembre:true},
+                 {id:2,nom:'errahmani2',prenom:'kamal2',age:45,estMembre:false},
+                 {id:3,nom:'errahmani3',prenom:'kamal3',age:19,estMembre:true},
+              ]
+    let statePersonnes = personnes.map(function(pers){
+        let state ='nom : ' + pers.nom
+        state =(pers.estMembre===true ) ? state + 'membre oui ' : state + 'membre non'
+        return state ;
+
+
+    });
+    console.log(statePersonnes)
+
+    //reduce
+    const clients = [
+                        { nom: "Rami", montant: 4500 , estmembre : true},
+                        { nom: "Karimi", montant: 2300 , estmembre : false},
+                        { nom: "Chaouki", montant: 5500, estmembre : true },
+                        { nom: "Ramoun", montant: 7700, estmembre : false },
+                    ];
+    const totalMontants=clients.reduce(function(total,client){
+                                                    return total+=client.montant
+                                                            },0);
+        console.log(totalMontants)
+    //exercice :le montant totale pour les clients 
+  const totalMontantsClients = clients.filter (function(client){return client.estMembre ===true })
+                                .reduce(function(total,client){
+                                   return total += client.montant},0)
+    console.log(totalMontantsClients) 
+
+    // exercice somme des produits 
+    let tab6=[1,2,3,4,5,6]
+    let totalproduits = tab6.reduce(function(produit,element){return produit *element},1)
+    console.log(totalproduits)
+    //exercice produit des elements avec reduce
+     let tab7=[1,2,3,4,5,6]
+     let produit =tab7.reduce(function(produit,element){return produit *=element},1)
+    console.log(produits)
+    uoijl
+
+    
+
+    
+    
+
+
+
+
+    
+</script>
+</body> 
+</html> 
